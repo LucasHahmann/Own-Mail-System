@@ -1,7 +1,10 @@
 <template>
     <div>
         <v-app>
-            <v-container v-for="(mail, counter) in mails[0].mails" :key="mail" class="mailContainer">
+            <div class="navbar">
+                <AppBar/>
+            </div>
+            <v-container v-for="(mail, counter) in mails[0].mails" :key="mail.Id" class="mailContainer">
                 <v-row @click="selectMail(counter)">
                     <v-col classs="itemContainer">
                         <p>{{ mail.ID}}</p>
@@ -20,23 +23,27 @@
 
 <script>
 import api from "@/methods/api.js"
+import store from "@/store/index.js"
+import AppBar from "@/components/Navigation/AppBar.vue"
 export default {
-  data () {
-    return {
-        mails: []
-    }
-  },
-  created () {
-      this.getMails()
-  },
+    components:{
+        AppBar
+    },
+    data () {
+        return {
+            mails: []
+        }
+    },
+    created () {
+        this.getMails()
+    },
     mixins: [api],
     methods: {
         async getMails(){
-            this.mails = await this.fatch("getMails", ["dsds", "dsds"])
-            console.log(this.mails)
+            this.mails = await this.fatch("getMails", [store.state.username, store.state.password])
         },
         selectMail(counter){
-            console.log(counter)
+            console.log(this.mails[0].mails[counter])
         }
     },
     

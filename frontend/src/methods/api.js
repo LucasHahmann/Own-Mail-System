@@ -12,11 +12,17 @@ export default {
             var b0dy= null;
             switch(endpoint) {
                 case "getMails":
-                    for (var value in variables){
-                        console.log(value)
+                    url = this.backend + "/getEmails/";
+                    for (let value in variables){
+                        url += variables[value] + "/"
+                        console.log(variables[value])
                     }
-                    url = this.backend + "/getEmails";
-                    url = ""
+                    console.log(url)
+                    url = "http://localhost:5000/api/getEmails/n300538_0-cdo/MNsku1000etc!"
+                    fetchMethod = "POST";
+                    break
+                case "checkLogin":
+                    url = this.backend + `/checkLogin/${variables[0]}/${variables[1]}`;
                     fetchMethod = "POST";
                 }
                 
