@@ -16,7 +16,6 @@ export default {
                     url = this.backend + `/getEmails/${variables[0]}/${variables[1]}`
                     fetchMethod = "POST";
                     console.log(url)
-                    // url = "http://localhost:5000/api/getEmails/n300538_0-cdo/2aIl%UYApYy94&h"
                     break
                 case "checkLogin":
                     url = this.backend + `/checkLogin/${variables[0]}/${variables[1]}`;

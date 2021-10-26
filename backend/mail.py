@@ -6,6 +6,13 @@ import webbrowser
 import os
 import json
 
+def checkLogin(username, password):
+    imap = imaplib.IMAP4_SSL("imap.1blu.de")
+    try:
+        imap.login(username, password)
+        return True
+    except:
+        return False
 
 def write_json(new_data, filename='mail.json'):
     with open(filename,'r+') as file:
